@@ -1,0 +1,8 @@
+# Protect dev files from tracking.
+/node_modules
+.DS_Store/
+.*.swp
+*.env
+
+# Ignore generated .svg files.
+*.svg

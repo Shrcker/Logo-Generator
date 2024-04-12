@@ -1,0 +1,23 @@
+{
+  "name": "logo-generator",
+  "version": "1.0.0",
+  "description": "Simple generator to automatically create .svg files based on user defined criteria using Inquirer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shrcker/Logo-Generator.git"
+  },
+  "author": "Shrcker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shrcker/Logo-Generator/issues"
+  },
+  "homepage": "https://github.com/Shrcker/Logo-Generator#readme",
+  "dependencies": {
+    "inquirer": "^9.2.18"
+  },
+  "type": "module"
+}
