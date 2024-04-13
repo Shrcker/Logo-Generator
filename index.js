@@ -1,20 +1,10 @@
 const inquirer = require("inquirer");
 const { readFile, writeFile } = require("fs/promises");
-const Shape = require("./lib/shape").Shape;
 const Circle = require("./lib/shape").Circle;
 const Triangle = require("./lib/shape").Triangle;
 const Rectangle = require("./lib/shape").Square;
 
 const shapesList = ["Circle", "Triangle", "Square"];
-
-// const isWhichShape = (answers) => {
-//   if (answers.shape === "Circle") {
-//     return (userShape = new Circle(answers.shapeColor, answers.acronym));
-//   } else if (answers.shape === "Triangle") {
-//     return (userShape = new Triangle(answers.shapeColor, answers.acronym));
-//   }
-//   return (userShape = new Square(answers.shapeColor, answers.acronym));
-// };
 
 inquirer
   .prompt([
@@ -56,7 +46,6 @@ inquirer
     } else {
       userShape = new Square(answers.shapeColor, answers.acronym);
     }
-    // isWhichShape(answers.shape);
 
     return writeFile(`./logos/${answers.acronym}.svg`, userShape.render());
   })
