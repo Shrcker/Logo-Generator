@@ -1,7 +1,10 @@
 const inquirer = require("inquirer");
 const { readFile, writeFile } = require("fs/promises");
+const Circle = require("./lib/shape").Circle;
+const Triangle = require("./lib/shape").Triangle;
+const Rectangle = require("./lib/shape").Rectangle;
 
-const shapesList = ["circle", "triangle", "square"];
+const shapesList = [Circle, "Triangle", "Square"];
 
 inquirer
   .prompt([
@@ -34,6 +37,10 @@ inquirer
     },
   ])
   .then((answers) => {
-    return writeFile(`./logos/${answers.name}.svg`, "I'm a file!");
+    const userShape = new Circle(answers.color, answers.name);
+    return writeFile(`./logos/${answers.name}.svg`, userShape.render());
   })
-  .then(() => console.log("File created!"));
+  .then(() => console.log("File created!"))
+  .catch((error) => {
+    console.log(error);
+  });
