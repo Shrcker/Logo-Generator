@@ -1,17 +1,27 @@
 const inquirer = require("inquirer");
 const { readFile, writeFile } = require("fs/promises");
+const Shape = require("./lib/shape").Shape;
 const Circle = require("./lib/shape").Circle;
 const Triangle = require("./lib/shape").Triangle;
-const Rectangle = require("./lib/shape").Rectangle;
+const Rectangle = require("./lib/shape").Square;
 
-const shapesList = [Circle, "Triangle", "Square"];
+const shapesList = ["Circle", "Triangle", "Square"];
+
+// const isWhichShape = (answers) => {
+//   if (answers.shape === "Circle") {
+//     return (userShape = new Circle(answers.shapeColor, answers.acronym));
+//   } else if (answers.shape === "Triangle") {
+//     return (userShape = new Triangle(answers.shapeColor, answers.acronym));
+//   }
+//   return (userShape = new Square(answers.shapeColor, answers.acronym));
+// };
 
 inquirer
   .prompt([
     {
       type: "input",
       message: "What is your business's three-letter acronym?",
-      name: "name",
+      name: "acronym",
       validate: async (input) => {
         if (input.length > 3 || input.length < 3) {
           return "Your acronym must be exactly 3 characters.";
@@ -37,8 +47,18 @@ inquirer
     },
   ])
   .then((answers) => {
-    const userShape = new Circle(answers.color, answers.name);
-    return writeFile(`./logos/${answers.name}.svg`, userShape.render());
+    let userShape;
+
+    if (answers.shape === "Circle") {
+      userShape = new Circle(answers.shapeColor, answers.acronym);
+    } else if (answers.shape === "Triangle") {
+      userShape = new Triangle(answers.shapeColor, answers.acronym);
+    } else {
+      userShape = new Square(answers.shapeColor, answers.acronym);
+    }
+    // isWhichShape(answers.shape);
+
+    return writeFile(`./logos/${answers.acronym}.svg`, userShape.render());
   })
   .then(() => console.log("File created!"))
   .catch((error) => {
