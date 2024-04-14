@@ -56,9 +56,9 @@ inquirer
     const textColor = answers.textColor.toLowerCase();
     const shapeColor = answers.shapeColor.toLowerCase();
 
-    if (answers.shape === "Circle") {
+    if (answers.shape === "circle") {
       userShape = new Circle(shapeColor, acronym);
-    } else if (answers.shape === "Triangle") {
+    } else if (answers.shape === "triangle") {
       userShape = new Triangle(shapeColor, acronym);
     } else {
       userShape = new Square(shapeColor, acronym);
