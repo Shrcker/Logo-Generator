@@ -1,8 +1,6 @@
 const inquirer = require("inquirer");
 const { readFile, writeFile } = require("fs/promises");
-const Circle = require("./lib/shape").Circle;
-const Triangle = require("./lib/shape").Triangle;
-const Square = require("./lib/shape").Square;
+const { Circle, Triangle, Square } = require("./lib/shape");
 
 const shapesList = ["Circle", "Triangle", "Square"];
 
@@ -57,11 +55,11 @@ inquirer
     const shapeColor = answers.shapeColor.toLowerCase();
 
     if (answers.shape === "circle") {
-      userShape = new Circle(shapeColor, acronym);
+      userShape = new Circle(shapeColor, textColor, acronym);
     } else if (answers.shape === "triangle") {
-      userShape = new Triangle(shapeColor, acronym);
+      userShape = new Triangle(shapeColor, textColor, acronym);
     } else {
-      userShape = new Square(shapeColor, acronym);
+      userShape = new Square(shapeColor, textColor, acronym);
     }
 
     return writeFile(`./logos/${acronym}.svg`, userShape.render());
